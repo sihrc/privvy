@@ -1,11 +1,14 @@
 import os, sys, argparse, pickle, md5
 import json
 
-from sources import aws
+from privvy.sources import aws
 
 sys.stdin = open('/dev/tty')
 
-MD5_PATH = os.path.join(os.path.dirname(__file__), "..", "md5s.pkl")
+PRIVVY_USER_FILES = os.path.join(os.path.expanduser("~"), ".privvy")
+if not os.path.exists(PRIVVY_USER_FILES):
+    os.makedirs(PRIVVY_USER_FILES)
+MD5_PATH = os.path.join(PRIVVY_USER_FILES, "md5s.pkl")
 MD5_DICT = {}
 
 METHODS = {

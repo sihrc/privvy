@@ -12,6 +12,7 @@ setup(
     author_email='contact@indico.io',
     url='https://indico.io',
     packages=find_packages(),
+    scripts=["bin/privvy-pull", "bin/privvy-push"],
     install_requires=[
         str(item.req) for item in
         parse_requirements(os.path.join(

@@ -24,7 +24,3 @@ def setup():
 
     print("Setting ~/.git_template as default global template directory")
     Popen("git config --global init.templatedir '~/.git_template'", shell=True)
-
-    print("Copying bin files to /usr/bin")
-    shutil.copy2(os.path.join(ROOT, "bin", "privvy-pull"), "/usr/bin/privvy-pull")
-    shutil.copy2(os.path.join(ROOT, "bin", "privvy-push"), "/usr/bin/privvy-push")

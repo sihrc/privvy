@@ -1,0 +1,3 @@
+echo "Running privvy push in post-commit"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd ../.. && pwd )"
+python -m privvy.push --file $DIR/.privvy --auto

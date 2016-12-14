@@ -1,6 +1,6 @@
 import os, shutil
+from subprocess import Popen
 
-from bash import bash
 from .sync import sync
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
@@ -23,7 +23,7 @@ def setup():
         )
 
     print("Setting ~/.git_template as default global template directory")
-    print(bash("git config --global init.templatedir '~/.git_template'"))
+    Popen("git config --global init.templatedir '~/.git_template'", shell=True)
 
     print("Copying bin files to /usr/bin")
     shutil.copy2(os.path.join(ROOT, "bin", "privvy-pull"), "/usr/bin/privvy-pull")

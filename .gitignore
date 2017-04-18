@@ -89,3 +89,4 @@ ENV/
 .ropeproject
 
 *.pkl
+test_privvy_file

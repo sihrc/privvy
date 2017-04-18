@@ -1,3 +1,0 @@
-echo "Running privvy pull in post-rewrite"
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd ../.. && pwd )"
-python -m privvy.pull --file $DIR/.privvy --auto

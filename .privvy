@@ -1,0 +1,6 @@
+{
+  "env_file": {
+      "path": "test_privvy_file",
+      "source": "s3://indico-config/test_privvy_file"
+  }
+}

@@ -21,6 +21,9 @@ if __name__ == "__main__":
     dst = os.path.join(".git", "hooks")
     src = os.path.join(os.path.dirname(__file__), "..", "hooks")
 
+    if not os.path.exists(dst):
+        os.makedirs(dst)
+
     for hook in os.listdir(src):
         dst_hook = os.path.join(dst, hook)
         src_hook = os.path.join(src, hook)

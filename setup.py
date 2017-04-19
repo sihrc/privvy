@@ -13,7 +13,7 @@ setup(
     packages=find_packages(),
     scripts=[ "bin/privvy-pull", "bin/privvy-push", "bin/privvy-init" ],
     include_package_data=True,
-    package_data={ "": [ "hooks/*" ] },
+    package_data={ "": [ "hooks/pre-push", "hooks/pre-receive" ] },
     install_requires=[
         str(item.req) for item in
         parse_requirements(os.path.join(

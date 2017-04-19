@@ -1,4 +1,4 @@
-import os, shutil
+import os, shutil, stat
 from subprocess import Popen
 
 from .sync import sync
@@ -13,6 +13,9 @@ def append_files(file1, file2):
     else:
         with open(file1, 'wb') as g:
             g.write(open(file2, 'rb').read())
+
+    st = os.stat(file1)
+    os.chmod(file1, st.st_mode | stat.S_IEXEC)
 
 if __name__ == "__main__":
     if not os.path.exists(".git"):

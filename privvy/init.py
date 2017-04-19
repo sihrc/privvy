@@ -6,7 +6,14 @@ from .sync import sync
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 
 def append_files(file1, file2):
+    with open(file2, 'rb') as f:
+        to_write = f.read()
+
     if os.path.exists(file1):
+        with open(file1, 'rb') as f:
+            existing = f.read()
+            if to_write in existing:
+                return
         with open(file1, 'ab') as f:
             f.write("\n")
             f.write(open(file2, 'rb').read())

@@ -61,7 +61,7 @@ def _check_file(root, filepath, source):
     resolved = os.path.join(root, filepath)
 
     if not os.path.exists(resolved):
-        return resolved, True, False
+        return resolved, False, True
 
     current_md5 = md5.md5(open(resolved, "rb").read()).hexdigest()
     saved_md5 = MD5_DICT.get(source)

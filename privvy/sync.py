@@ -1,4 +1,4 @@
-import os, sys, argparse, pickle, md5
+import os, sys, argparse, pickle, hashlib
 import json
 
 from privvy.sources import aws
@@ -34,7 +34,7 @@ def sync(mode):
             if not exists:
                 continue
 
-            reply = raw_input("[Privvy] Private file {path} has been changed. Push new changes?".format(
+            reply = input("[Privvy] Private file {path} has been changed. Push new changes?".format(
                 path=filepath
             ))
 
@@ -44,7 +44,7 @@ def sync(mode):
         method = _get_source_method(source)
         file_changed = getattr(method, mode)(filepath, source, mapping=info.get("env_mapping", {}))
         if file_changed:
-            MD5_DICT[source] = md5.md5(open(filepath, "rb").read()).hexdigest()
+            MD5_DICT[source] = hashlib.md5(open(filepath, "rb").read()).hexdigest()
 
     pickle.dump(MD5_DICT, open(MD5_PATH, 'wb'))
     return
@@ -63,7 +63,7 @@ def _check_file(root, filepath, source):
     if not os.path.exists(resolved):
         return resolved, False, True
 
-    current_md5 = md5.md5(open(resolved, "rb").read()).hexdigest()
+    current_md5 = hashlib.md5(open(resolved, "rb").read()).hexdigest()
     saved_md5 = MD5_DICT.get(source)
 
     return resolved, True, current_md5 != saved_md5

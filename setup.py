@@ -2,7 +2,6 @@
 import os
 
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
 
 setup(
     name="privvy",
@@ -15,10 +14,8 @@ setup(
     include_package_data=True,
     package_data={ "": [ "hooks/pre-push", "hooks/pre-receive" ] },
     install_requires=[
-        str(item.req) for item in
-        parse_requirements(os.path.join(
+        open(os.path.join(
                 os.path.dirname(__file__),
-                "requirements.txt"
-        ), session=False)
+                "requirements.txt"), "r").readlines()
     ]
 )
